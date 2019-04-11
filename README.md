@@ -1,11 +1,10 @@
-# HW10
+# HW10 Assignment.
 Correction of previous submission
 import prettytable
 import unittest,os
 from prettytable import PrettyTable
 from collections import defaultdict
-from hw09 import file_reader
-
+from hw09 import file_reader # Import from homework 9
 
 class Repository:
     """ Repository class that hold and implements data structure
