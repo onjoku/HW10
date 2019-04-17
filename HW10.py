@@ -2,16 +2,15 @@ import prettytable, hw09
 import unittest,os
 from prettytable import PrettyTable
 from collections import defaultdict
-from hw09 import file_reader
 import sqlite3
-connnec = sqlite3.connect("student.db")
+from hw09 import file_reader
+DBFile = "/Users/user/.DataGrip2019.1/config/consoles/Student.db"
+database = sqlite3.connect(DBFile)
 
 
 class Repository:
     """ Repository class that hold and implements data structure
     of instructor, students and courses """
-    
-    
     
     def __init__(self, dpath, ptables=True) :
         """ Initialization implementation """
@@ -180,17 +179,13 @@ class Instructor:
         """ Note that another student took a course with this instructor """
         self.courses[course] += 1
         
-        print("Opening files for Instructor's Smmary File")
-        connec.execute("CREATE TABLE Instructors Table"
-                   (CREATE TABLE Instructor_Summary(
-         '('CWID INTEGER primary key ,
-         NAME  CHARACTER(20),
-         DEPT  TEXT,
-         COURSE CHARACTER(10),
-         STUDENT TEXT')'
-     );
-                    
-    
+    def databaseinfor(self, cwid, name, dept, course):
+        qb = '''SELECT i.C1,i.C2,i.C3,g.C2, count(g.C2) as cnt
+            from HW11_instructors i left join HW11_grades g on i.C1 = g.C1
+            GROUP BY i.C1, i.C2, i.C3, g.C2
+            order by  "SSW 564"'''
+        for row in qb.execute("Select cwid, name, dept,course from Instructor_Summary"):
+            pt.add_row(row)
 
     def infor(self):
         return [self.cwid, self.name, sorted(self.courses.keys())]
