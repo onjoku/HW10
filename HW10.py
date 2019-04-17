@@ -3,11 +3,15 @@ import unittest,os
 from prettytable import PrettyTable
 from collections import defaultdict
 from hw09 import file_reader
+import sqlite3
+connnec = sqlite3.connect("student.db")
 
 
 class Repository:
     """ Repository class that hold and implements data structure
     of instructor, students and courses """
+    
+    
     
     def __init__(self, dpath, ptables=True) :
         """ Initialization implementation """
@@ -175,6 +179,18 @@ class Instructor:
     def add_student(self, course):
         """ Note that another student took a course with this instructor """
         self.courses[course] += 1
+        
+        print("Opening files for Instructor's Smmary File")
+        connec.execute("CREATE TABLE Instructors Table"
+                   (CREATE TABLE Instructor_Summary(
+         '('CWID INTEGER primary key ,
+         NAME  CHARACTER(20),
+         DEPT  TEXT,
+         COURSE CHARACTER(10),
+         STUDENT TEXT')'
+     );
+                    
+    
 
     def infor(self):
         return [self.cwid, self.name, sorted(self.courses.keys())]
